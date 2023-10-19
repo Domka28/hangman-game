@@ -9,15 +9,16 @@ const newBtn = document.querySelector(".new-sentence")
 const showBtn = document.querySelector(".show-sentence")
 
 
-let arrayOfLetters = [];
+const arrayOfLetters = [];
 let counter = 1;
-let currentSentence = ''
+const currentSentence = ''
+const alphabet = ["A", "Ą", "B", "C", "Ć", "D", "E", "Ę", "F", "G", "H", "I", "J", "K", "L", "Ł", "M", "N", "Ń", "O", "Ó", "P", "Q", "R", "S", "Ś", "T", "U", "V", "W", "X", "Y", "Z", "Ż", "Ź"]
+
 
 gifContainer.innerHTML = `<img src="src/img/s0.gif" alt="obrazek wisielec">`
 quantity.innerText = data.length
 
 let randomIndex = Math.floor(Math.random() * data.length);
-console.log(randomIndex)
 
 data.filter(element => element.id === randomIndex).forEach(element => {
     category.innerText = element.category;
@@ -40,7 +41,6 @@ function generateSentence(sentence) {
     return result;
 }
 
-const alphabet = ["A", "Ą", "B", "C", "Ć", "D", "E", "Ę", "F", "G", "H", "I", "J", "K", "L", "Ł", "M", "N", "Ń", "O", "Ó", "P", "Q", "R", "S", "Ś", "T", "U", "V", "W", "X", "Y", "Z", "Ż", "Ź"]
 alphabet.forEach((element, index) => {
     const letterHTML = `<div class="letter" id="letter${index}">${element}</div>`;
     lettersContainer.innerHTML += letterHTML;
@@ -56,7 +56,7 @@ function showLetter(e) {
         e.target.style.borderColor = "#a7c957";
         sentence.innerHTML = generateSentence(currentSentence)
         if (!generateSentence(currentSentence).includes("_")) {
-            lettersContainer.innerHTML = youWon();
+            lettersContainer.innerHTML = getYouWonHtml();
         }
     } else {
         e.target.style.color = "#bc4749";
@@ -65,21 +65,17 @@ function showLetter(e) {
             gifContainer.innerHTML = `<img src="src/img/s${counter++}.gif" alt="obrazek wisielec">`
         } else {
             gifContainer.innerHTML = `<img src="src/img/s8.gif" alt="obrazek wisielec">`
-            lettersContainer.innerHTML = youLost()
+            lettersContainer.innerHTML = getYouLostHtml()
         }
     }
 }
 
-function youWon() {
-    return `<div class="you-won">
-<p>Udało się, wygrałeś!</p>
-</div>`
+function getYouWonHtml() {
+    return `<div class="you-won"><p>Udało się, wygrałeś!</p></div>`
 }
 
-function youLost() {
-    return `<div class="you-lost">
-<p>Niestety nie tym razem... Spróbuj jeszcze raz!</p>
-</div>`
+function getYouLostHtml() {
+    return `<div class="you-lost"><p>Niestety nie tym razem... Spróbuj jeszcze raz!</p></div>`
 }
 
 function setNewSentence() {
@@ -88,10 +84,8 @@ function setNewSentence() {
 
 function showSentence() {
     sentence.innerHTML = currentSentence;
-    lettersContainer.innerHTML = youLost()
+    lettersContainer.innerHTML = getYouLostHtml()
 }
-
-
 
 showBtn.addEventListener("click", showSentence)
 newBtn.addEventListener("click", setNewSentence)
