@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-
-
 * {
     padding: 0;
     margin: 0;
@@ -63,7 +61,7 @@ body {
 .image-letters {
     display: flex;
     flex-direction: row;
-    margin: 70px 0 40px 0;
+    margin: 90px 0 60px 0;
 }
 
 .gif-container {
@@ -133,10 +131,107 @@ img {
     background-color: #14213d;
     border: none;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.3em;
     padding: 0 15px;
 }
 
 .btn:hover {
     color: #fca311;
+}
+
+@media (max-width: 1900px) {
+    .header {
+        height: 15vh;
+    }
+
+    .game-container {
+        padding: 20px 0;
+    }
+
+    .image-letters {
+        margin: 30px 0 10px 0;
+    }
+}
+
+@media (max-width: 1061px) {
+    .header {
+        height: 15vh;
+    }
+
+    .game-container {
+        padding: 30px 0;
+    }
+
+    .image-letters {
+        margin: 40px 0 30px 0;
+    }
+}
+
+@media (max-width: 1061px) {
+    .header {
+        height: 8vh;
+    }
+
+    .game-container {
+        padding: 10px 0;
+    }
+
+    .sentence-letters {
+        color: #fca311;
+        font-size: 2em;
+        text-transform: uppercase;
+        padding: 5px 20px;
+        margin-top: 20px;
+    }
+
+    .image-letters {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 30px 0;
+    }
+
+    .gif-container {
+        width: 370px;
+        height: 300px;
+        background-color: #14213d;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .letters-container {
+        width: 320px;
+        height: 220px;
+        padding-left: 20px;
+        margin-top: 30px;
+    }
+
+    .letter {
+        width: 24px;
+        height: 22px;
+        font-size: 1em;
+        text-align: center;
+        padding: 4px;
+        margin: 5px;
+        border-radius: 10px;
+        border: 1.5px solid #ced4da;
+    }
+
+    .header-info p {
+        padding: 0 8px;
+        font-size: 0.8em;
+        color: white;
+    }
+
+    .you-won {
+        margin: 40px 0 0 65px;
+    }
+
+    .you-lost {
+        margin: 30px 0 0 30px;
+    }
+
 }
