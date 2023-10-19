@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #14213d;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fca311;
+    height: 10vh;
+    padding: 15px 0;
+}
+
+.text {
+    font-size: 1.8em;
+    color: white;
+}
+
+.header-info {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.header-info p {
+    padding: 0 8px;
+    font-size: 1.2em;
+    color: white;
+}
+
+.header-info p span {
+    color: #14213d;
+    font-weight: bold;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 0;
+}
+
+
+.sentence-letters {
+    color: #fca311;
+    font-size: 3em;
+    text-transform: uppercase;
+}
+
+.image-letters {
+    display: flex;
+    flex-direction: row;
+    margin: 70px 0 40px 0;
+}
+
+.gif-container {
+    width: 450px;
+    height: 300px;
+    background-color: #14213d;
+    margin-right: 20px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.letters-container {
+    width: 450px;
+    height: 300px;
+    margin-left: 20px;
+}
+
+.letter {
+    width: 34px;
+    height: 32px;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 4px;
+    margin: 5px;
+    border: 3px solid #ced4da;
+    color: #ced4da;
+    float: left;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.letter:hover {
+    border-color: #fca311;
+    color: #fca311;
+}
+
+.letters-container {
+    display: block;
+    margin-top: 15px;
+}
+
+.btn {
+    background-color: #14213d;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    padding: 0 15px;
+}
+
+.btn:hover {
+    color: #fca311;
+}
