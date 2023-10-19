@@ -4,7 +4,16 @@ const sentence = document.querySelector(".sentence-letters")
 const quantity = document.querySelector(".sentence-quantity")
 const category = document.querySelector(".sentence-category")
 const lettersContainer = document.querySelector(".letters-container")
+const gifContainer = document.querySelector(".gif-container")
+const newBtn = document.querySelector(".new-sentence")
+const showBtn = document.querySelector(".show-sentence")
 
+
+let arrayOfLetters = [];
+let counter = 1;
+let currentSentence = ''
+
+gifContainer.innerHTML = `<img src="src/img/s0.gif" alt="obrazek wisielec">`
 quantity.innerText = data.length
 
 let randomIndex = Math.floor(Math.random() * data.length);
@@ -12,12 +21,23 @@ console.log(randomIndex)
 
 data.filter(element => element.id === randomIndex).forEach(element => {
     category.innerText = element.category;
-    sentence.innerText = element.sentence;
+    sentence.innerHTML = generateSentence(element.sentence);
+    currentSentence = element.sentence.toUpperCase();
 })
 
+function generateSentence(sentence) {
+    let result = '';
+    for (let letter of sentence) {
+        if (arrayOfLetters.includes(letter)) {
+            result += `${letter} `
+        } else if (!arrayOfLetters.includes(letter) && letter !== ' ') {
+            result += `_ `
+        } else {
+            result += '&nbsp;&nbsp;';
+        }
+    }
 
-function showLetter(e) {
-    console.log(e.target)
+    return result;
 }
 
 const alphabet = ["A", "Ą", "B", "C", "Ć", "D", "E", "Ę", "F", "G", "H", "I", "J", "K", "L", "Ł", "M", "N", "Ń", "O", "Ó", "P", "Q", "R", "S", "Ś", "T", "U", "V", "W", "X", "Y", "Z", "Ż", "Ź"]
@@ -26,25 +46,53 @@ alphabet.forEach((element, index) => {
     lettersContainer.innerHTML += letterHTML;
 });
 
+function showLetter(e) {
+    if (!e.target.classList.contains('letter')) return;
+    if (arrayOfLetters.includes(e.target.innerText)) return;
+    arrayOfLetters.push(e.target.innerText)
 
+    if (currentSentence.includes(e.target.innerText)) {
+        e.target.style.color = "#a7c957";
+        e.target.style.borderColor = "#a7c957";
+        sentence.innerHTML = generateSentence(currentSentence)
+        if (!generateSentence(currentSentence).includes("_")) {
+            lettersContainer.innerHTML = youWon();
+        }
+    } else {
+        e.target.style.color = "#bc4749";
+        e.target.style.borderColor = "#bc4749";
+        if (counter < 8) {
+            gifContainer.innerHTML = `<img src="src/img/s${counter++}.gif" alt="obrazek wisielec">`
+        } else {
+            gifContainer.innerHTML = `<img src="src/img/s8.gif" alt="obrazek wisielec">`
+            lettersContainer.innerHTML = youLost()
+        }
+    }
+}
+
+function youWon() {
+    return `<div class="you-won">
+<p>Udało się, wygrałeś!</p>
+</div>`
+}
+
+function youLost() {
+    return `<div class="you-lost">
+<p>Niestety nie tym razem... Spróbuj jeszcze raz!</p>
+</div>`
+}
+
+function setNewSentence() {
+    location.reload()
+}
+
+function showSentence() {
+    sentence.innerHTML = currentSentence;
+    lettersContainer.innerHTML = youLost()
+}
+
+
+
+showBtn.addEventListener("click", showSentence)
+newBtn.addEventListener("click", setNewSentence)
 document.addEventListener("click", showLetter);
-
-//Co muszę zrobić?
-
-//2.obsłużyć miejsce, w którym wyświetlane jest hasło tak, żeby na początku każda literka była przykryta prez "_"
-//a) jeśli kliknięta literka nie jest w haśle, to "_" zostaje i obrazek zmienia się na kolejny, czyli s1+1 itd
-//b) jeśli kliknięta literka jest w haśle, to obrazek się nie zmienia a "_" zmienia się w odpowiednią literkę
-//w ten sposób zmienia się każda taka sama literka ukryta pod "_"
-
-//3.Poprawnie odgadnięte literki zmieniają się w zielony, a niepoprawne w czerwony i nie można ich drugi raz kliknąć
-
-//4..Jeśli wszystkie rysunki się skończą, to zamiast literek po prawej str pojawia się hasło "przegrana" i button,
-//który wznawia grę
-
-//5.Jeśli hasło zostanie odgadnięte, to wyświetlić ma się hasło o wygranej i też przycisk "losuj dalej"
-
-//6.Przycisk pokaż całe wyświetla całe hasło tam gdzie literki po prawej i też przycisk "losuj dalej"
-
-//7. Przycisk wylosuj inne hasło losuje nowe hasło z API i gra toczy się dalej
-
-
